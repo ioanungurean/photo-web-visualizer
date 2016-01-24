@@ -1,0 +1,30 @@
+<section id="content" role="content" layout="column" layout-padding md-scroll-y>
+ 	<!-- <md-progress-linear md-mode="indeterminate"></md-progress-linear> -->
+
+	<ul class="dynamic-grid" angular-grid="gallVm.pics" angular-grid-options="gallVm.angularGridOptions"
+			angular-grid-id="gallery">
+	   <li data-ng-repeat="pic in gallVm.pics" class="grid">
+				<md-card>
+				  <img ng-src="{{pic.images.low_resolution.url}}" class="md-card-image grid-img">
+				  <md-divider></md-divider>
+		      <md-card-content>
+		      		<span class="md-body-1"><b>{{pic.caption.text}}<b></span></br></br>
+		          <span class="md-body-1">Uploaded on : {{gallVm.timeConverter(pic.caption.created_time)}}</span>
+	        </md-card-content>
+				  <md-card-actions layout="row" layout-align="space-between center">
+			    	<md-card-icon-actions> 	
+				      <md-icon class="comlik">favorite</md-icon>
+				    	<span class="md-body-2">{{pic.likes.count}}</span>
+
+				      <md-icon class="comlik">comment</md-icon>
+				    	<span class="md-body-2">{{pic.comments.count}}</span>
+				    </md-card-icon-actions>
+
+				    <md-button class="md-icon-button" aria-label="Share">
+				      <md-icon>share</md-icon>
+				    </md-button>
+				  </md-card-actions>
+				</md-card>
+	   </li>
+	</ul>
+</section>

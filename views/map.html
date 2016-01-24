@@ -1,0 +1,28 @@
+<section id="content" role="content" layout="column" layout-padding md-scroll-y>
+	<md-card>
+		<ng-map class="google-map" zoom="2" center="[0, 0]"
+				  	on-click="mainVm.addMarker()">
+  		<marker ng-repeat="p in mainVm.positions" position="{{p.pos}}" title="pos: {{p.pos}}"></marker>
+  	</ng-map>
+	  <md-chips
+	        ng-model="mainVm.tags"
+	        readonly="mainVm.readonly"
+	        placeholder="Enter new location"
+	        delete-button-label="Remove Tag"
+	        delete-hint="Press delete to remove tag"
+	        secondary-placeholder="Filter by locations"></md-chips>
+		
+	  <md-card-actions layout="row" layout-align="space-between">
+		  <md-button ng-click="mainVm.clearMarkers();">Clear markers</md-button>
+
+	  	<md-card-icon-actions>	    
+		    <md-button class="md-icon-button" aria-label="Share">
+		      <md-icon>share</md-icon>
+		    </md-button>
+		  </md-card-icon-actions>
+
+	  </md-card-actions>
+	</md-card>
+</section>
+
+ 
