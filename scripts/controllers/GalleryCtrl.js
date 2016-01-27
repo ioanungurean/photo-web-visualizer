@@ -11,9 +11,9 @@ function GalleryCtrl(imageService, angularGridInstance) {
      refreshOnImgLoad : true
   }
  
-  imageService.fetchPopular(function(data){
-    vm.pics = data;
-  });
+  // imageService.fetchPopular(function(data){
+  //   vm.pics = data;
+  // });
 
   vm.refresh = function(){
     angularGridInstance.gallery.refresh();

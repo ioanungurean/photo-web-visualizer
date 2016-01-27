@@ -1,13 +1,25 @@
 var app = angular.module("app")
 .factory('imageService', ['$http', function($http){
+	
+	var apiUrl = 'https://api.instagram.com/v1/';
+	var clientId ='642176ece1e7445e99244cec26f4de1f';
+
+	var getLocations = function(lat, lng) {
+		return $http.jsonp(apiUrl + "locations/search?lat=" + lat + "&lng=" + lng + "&distance=5000&client_id=" + clientId + "&callback=JSON_CALLBACK")
+		.then(function(response){
+			return response.data;
+		});
+	};
+
+	var getPhotos = function(lat, lng) {
+		return $http.jsonp(apiUrl + "locations/search?lat=" + lat + "&lng=" + lng + "&distance=5000&client_id=" + clientId + "&callback=JSON_CALLBACK")
+		.then(function(response){
+			return response.data;
+		});
+	};
+
 	return {
-		fetchPopular: function(callback){
-
-			var endPoint = "https://api.instagram.com/v1/locations/514276/media/recent?client_id=642176ece1e7445e99244cec26f4de1f&callback=JSON_CALLBACK";
-
-			$http.jsonp(endPoint).success(function(response){
-			  callback(response.data);
-			});
-		}
-	}
+		getLocations: getLocations,
+		getPhotos: getPhotos
+	};
 }]);

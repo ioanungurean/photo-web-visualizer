@@ -2,11 +2,9 @@ angular
 .module('app')
 .controller('MainCtrl', ['$mdSidenav', '$mdToast', MainCtrl]);
 
-function MainCtrl($mdSidenav, $mdToast, NgMap) {
+function MainCtrl($mdSidenav, $mdToast) {
 
 	var vm  = this;
-	vm.tags = [];
-	vm.positions = [];
 
 	vm.toggleSidenav = function(menu) {
 		$mdSidenav(menu).toggle();
@@ -31,16 +29,5 @@ function MainCtrl($mdSidenav, $mdToast, NgMap) {
 			.position('bottom right')
 		);
 		localStorage.setItem('theme', theme);
-	}
-
-	//------- Initialize starting display position of the map -------
-  vm.addMarker = function(event) {
-    var ll = event.latLng;
-    vm.positions.push({pos:[ll.lat(), ll.lng()]});
-  }
-
-  vm.clearMarkers = function(event) {
-    vm.positions = [];
-  }
-
+	};
 };

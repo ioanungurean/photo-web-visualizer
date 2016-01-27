@@ -5,8 +5,8 @@ angular.module('app', ['ui.router', 'ngMaterial', 'angularGrid', 'ngMap',])
     .state('home', {
       url: '/',
       templateUrl: './views/map.html',
-      title: "Map"
-      //controller: 'MapCtrl as mapVm'
+      title: "Map",
+      controller: 'MapCtrl as mapVm'
     })
 
     .state('gallery', {
@@ -42,6 +42,11 @@ angular.module('app', ['ui.router', 'ngMaterial', 'angularGrid', 'ngMap',])
 .run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
+
+  $rootScope.$on('mapInitialized', function(evt, map) {
+    $rootScope.mymap = map;
+    $rootScope.$apply();
+  });
   
   $state.transitionTo('home'); 
 }]);
