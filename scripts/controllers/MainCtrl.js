@@ -30,4 +30,28 @@ function MainCtrl($mdSidenav, $mdToast) {
 		);
 		localStorage.setItem('theme', theme);
 	};
+
+	vm.showSR = function(param) {
+		$mdToast.show(
+			$mdToast.simple()
+			.content('State successfully ' + param + '!')
+			.position('bottom right')
+		);
+	}
+
+	vm.showGP = function() {
+		$mdToast.show(
+			$mdToast.simple()
+			.content('Here are all the photos in the area!')
+			.position('bottom right')
+		);
+	}
+
+	vm.showFiltered = function(param) {
+		$mdToast.show(
+			$mdToast.simple()
+			.content('Photos filtered by ' + param + '!')
+			.position('bottom right')
+		);
+	}	
 };

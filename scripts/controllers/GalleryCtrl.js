@@ -1,19 +1,17 @@
 angular
 .module('app')
-.controller("GalleryCtrl", ['imageService', 'angularGridInstance', GalleryCtrl]);
+.controller("GalleryCtrl", ['imageService', 'galleryService', 'angularGridInstance', GalleryCtrl]);
 
-function GalleryCtrl(imageService, angularGridInstance) {
+function GalleryCtrl(imageService, galleryService, angularGridInstance) {
   var vm  = this;
 
   vm.angularGridOptions = {
-     gridWidth : 250,
+     gridWidth : 300,
      gutterSize : 10,
      refreshOnImgLoad : true
   }
  
-  // imageService.fetchPopular(function(data){
-  //   vm.pics = data;
-  // });
+  vm.pics = galleryService.getPhotos();
 
   vm.refresh = function(){
     angularGridInstance.gallery.refresh();
@@ -31,6 +29,43 @@ function GalleryCtrl(imageService, angularGridInstance) {
       var sec = a.getSeconds();
       var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
       return time;
-    } else {return "unknown";}
+    } else {
+      return "unknown";
+    }
+  }
+
+  //make sure to keep a refrence of original list and create a new list refrence for scope using concat method.
+  // $scope.imageList = vm.pics;
+  // console.log($scope.imageList);
+
+  // //apply search on the list base on searchTxt which can be binded to an input element
+  // $scope.$watch('searchTxt', function (val) {
+  //   val = val.toLowerCase();
+  //   $scope.imageList = imageList.filter(function (obj) {
+  //     return obj.title.toLowerCase().indexOf(val) != -1;
+  //   });
+  // });
+  
+  vm.sortByDate = function () {
+     vm.pics.sort(function(a, b) {
+      try{
+      if(a.caption.created_time!=="" && b.caption.created_time !== "")
+      return b.caption.created_time === null ? -1 : a.caption.created_time === null ? 1 : b.caption.created_time.toString().localeCompare(a.caption.created_time);
+      } catch(e) {
+        console.log(e);
+      }
+    });
+  }
+
+  vm.sortByLikes = function () {
+    vm.pics.sort(function (a, b) {
+      return b.likes.count - a.likes.count;
+    });
+  }
+
+  vm.sortByComments = function () {
+    vm.pics.sort(function (a, b) {
+      return b.comments.count - a.comments.count;
+    });
   }
 };

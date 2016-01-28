@@ -69,11 +69,6 @@
         </md-button>
         <h4 class="md-title">{{$state.current.title}}</h4>
         <span flex></span>
-        
-        <!-- ====================== Add button ====================== -->
-        <md-button class="md-icon-button" aria-label="Button Refresh">
-          <md-icon>refresh</md-icon>
-        </md-button>
 
         <!-- ====================== Color button ====================== -->
         <md-menu md-position-mode="target-right target">
@@ -115,21 +110,21 @@
         <!-- ====================== Dropdown button ====================== -->
         <md-menu md-position-mode="target-right target">
           <md-button class="md-icon-button" aria-label="Dropdown Header" ng-click="$mdOpenMenu($event)">
-            <md-icon>message</md-icon>
+            <md-icon>settings</md-icon>
           </md-button>
           <md-menu-content width="4">
             <md-subheader>Dropdown Header</md-subheader>
             <md-menu-item>
-              <md-button layout-fill md-ink-ripple ng-click="mainVm.toast('Option 1')">
-                <md-icon md-menu-align-target>done</md-icon>
-                Option 1
+              <md-button layout-fill md-ink-ripple ng-click="mainVm.toast('Flickr')">
+                <md-icon md-menu-align-target>camera</md-icon>
+                Flickr
               </md-button>
             </md-menu-item>
 
             <md-menu-item>
-              <md-button layout-fill md-ink-ripple ng-click="mainVm.toast('Option 2')">
-                <md-icon md-menu-align-target>hourglass_empty</md-icon>
-                Option 2
+              <md-button layout-fill md-ink-ripple ng-click="mainVm.toast('Instagram')">
+                <md-icon md-menu-align-target>photo_camera</md-icon>
+                Instagram
               </md-button>
             </md-menu-item>
           </md-menu-content>
@@ -162,5 +157,6 @@
 
   <!-- Services -->
   <script src="scripts/services/imageService.js"></script>
+  <script src="scripts/services/galleryService.js"></script>
 </body>
 </html>

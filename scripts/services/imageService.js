@@ -11,8 +11,8 @@ var app = angular.module("app")
 		});
 	};
 
-	var getPhotos = function(lat, lng) {
-		return $http.jsonp(apiUrl + "locations/search?lat=" + lat + "&lng=" + lng + "&distance=5000&client_id=" + clientId + "&callback=JSON_CALLBACK")
+	var getPhotos = function(locId) {
+		return $http.jsonp(apiUrl + "locations/" + locId + "/media/recent" + "?client_id=" + clientId + "&callback=JSON_CALLBACK")
 		.then(function(response){
 			return response.data;
 		});
